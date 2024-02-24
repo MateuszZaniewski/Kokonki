@@ -9,6 +9,7 @@ import ObserverInsta from "../components/ObserverInsta";
 import ProductOverview from "../components/ProductOverview";
 import { AppContext } from "./../context/AppContext";
 import AddedToCardModal from "../components/Boxes/AddedToCardModal";
+import { useRef } from "react";
 
 export default function ProductPage() {
   const { name } = useParams();
@@ -20,6 +21,7 @@ export default function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [showAddedToCardModal, setShowAddedToCardModal] = useState(false);
   const [visibleHamburgerMenu, setVisibleHamburgerMenu] = useState(false);
+  const myRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +36,7 @@ export default function ProductPage() {
       if (data) {
         console.log(data);
         setProduct(data);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     };
     fetchData();
@@ -59,7 +62,10 @@ export default function ProductPage() {
         setVisibleHamburgerMenu,
       }}
     >
-      <div className="mx-auto max-w-[1440px] bg-[#F9F8F9] font-inter xl:min-h-[100vh]">
+      <div
+        ref={myRef}
+        className="mx-auto max-w-[1440px] bg-[#F9F8F9] font-inter xl:min-h-[100vh]"
+      >
         {showAddedToCardModal ? <AddedToCardModal /> : null}
 
         <Navbar />

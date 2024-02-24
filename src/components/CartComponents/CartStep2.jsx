@@ -1,7 +1,7 @@
 import step2 from "../../assets/step2.svg";
 import arrowDownIcon from "../../assets/arrow-down.svg";
 import arrowUpIcon from "../../assets/arrow-up.svg";
-import { useState } from "react";
+import { useRef, useState } from "react";
 export default function CartStep2({
   secondForm,
   setSecondForm,
@@ -10,6 +10,16 @@ export default function CartStep2({
 }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
+  const myRef = useRef(null);
+
+  const handleOpen = () => {
+    setOpen(!open);
+    if (!open) {
+      myRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
 
   const SingleOption = ({ courier, price, subtittle }) => {
     const handleChange = () => {
@@ -43,13 +53,12 @@ export default function CartStep2({
 
   return (
     <div className="border-b-2 border-black bg-[#F9F8F9] py-5 lg:mr-28">
-      <div
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-between"
-      >
+      <div onClick={handleOpen} className="flex items-center justify-between">
         <div className="flex items-center gap-1">
           <img src={step2} />
-          <span className="text-[20px] font-semibold">Sposób dostawy</span>
+          <span ref={myRef} className="text-[20px] font-semibold">
+            Sposób dostawy
+          </span>
         </div>
         <div>
           <img src={open ? arrowUpIcon : arrowDownIcon} />

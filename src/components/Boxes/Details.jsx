@@ -1,14 +1,24 @@
 import arrowUpIcon from "../../assets/arrow-up.svg";
 import arrowDownIcon from "../../assets/arrow-down.svg";
 import DetailsSingleRow from "./DetailsSingleRow";
+import { useRef } from "react";
 export default function Details({ visiblePage, setVisiblePage, product }) {
+  const myRef = useRef(null);
+  const handleClick = async () => {
+    await setVisiblePage(2);
+    myRef.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
   return (
     <div
-      onClick={() => setVisiblePage(2)}
+      onClick={handleClick}
       className="border-b-2 border-black py-4 xl:w-[538px]"
     >
       <div className="flex cursor-pointer justify-between">
-        <span className="font-bold uppercase xl:text-[13px]">Szczególy</span>
+        <span ref={myRef} className="font-bold uppercase xl:text-[13px]">
+          Szczególy
+        </span>
         <img src={visiblePage === 2 ? arrowUpIcon : arrowDownIcon} />
       </div>
 

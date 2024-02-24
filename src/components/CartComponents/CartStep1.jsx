@@ -6,6 +6,7 @@ import Select from "react-select";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import "../../index.css";
+import { useRef } from "react";
 
 export default function CartStep1({
   firstForm,
@@ -18,6 +19,16 @@ export default function CartStep1({
   const [selectedCountry, setSelectedCountry] = useState({});
   const [phone, setPhone] = useState("");
   const styles = `border-b border-black bg-[#F9F8F9] pb-1 lg:max-w-[427px] outline-none`;
+  const myRef = useRef(null);
+
+  const handleOpen = () => {
+    setOpen(!open);
+    if (!open) {
+      myRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -64,13 +75,10 @@ export default function CartStep1({
 
   return (
     <div className="border-b-2 border-black bg-[#F9F8F9] py-5 lg:mr-28">
-      <div
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-between"
-      >
+      <div onClick={handleOpen} className="flex items-center justify-between">
         <div className="flex items-center gap-1">
           <img src={step1} />
-          <span className="text-[20px] font-semibold">
+          <span ref={myRef} className="text-[20px] font-semibold">
             Adres doręczenia i dane do faktury
           </span>
         </div>

@@ -1,6 +1,14 @@
 import arrowUpIcon from "../../assets/arrow-up.svg";
 import arrowDownIcon from "../../assets/arrow-down.svg";
+import { useRef } from "react";
 export default function Delivery({ visiblePage, setVisiblePage }) {
+  const myRef = useRef(null);
+  const handleClick = async () => {
+    await setVisiblePage(3);
+    myRef.current.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
   const PricedDelivery = ({ operator, time }) => {
     return (
       <div className="pb-3">
@@ -12,11 +20,11 @@ export default function Delivery({ visiblePage, setVisiblePage }) {
 
   return (
     <div
-      onClick={() => setVisiblePage(3)}
+      onClick={handleClick}
       className="border-b-2 border-black py-4 xl:w-[538px]"
     >
       <div className="flex cursor-pointer justify-between">
-        <span className="font-bold uppercase xl:text-[13px]">
+        <span ref={myRef} className="font-bold uppercase xl:text-[13px]">
           Dostawa i zwroty
         </span>
         <img src={visiblePage === 3 ? arrowUpIcon : arrowDownIcon} />

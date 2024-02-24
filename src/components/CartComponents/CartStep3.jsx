@@ -1,10 +1,20 @@
 import step3 from "../../assets/step3.svg";
 import arrowDownIcon from "../../assets/arrow-down.svg";
 import arrowUpIcon from "../../assets/arrow-up.svg";
-import { useState } from "react";
+import { useState, useRef } from "react";
 export default function CartStep3({ thirdForm, setThirdForm }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState("");
+  const myRef = useRef(null);
+
+  const handleOpen = () => {
+    setOpen(!open);
+    if (!open) {
+      myRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
 
   const SingleMethod = ({ name }) => {
     const handleChange = () => {
@@ -27,13 +37,12 @@ export default function CartStep3({ thirdForm, setThirdForm }) {
   };
   return (
     <div className="border-b-2 border-black bg-[#F9F8F9] py-5 lg:mr-28">
-      <div
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-between"
-      >
+      <div onClick={handleOpen} className="flex items-center justify-between">
         <div className="flex items-center gap-1">
           <img src={step3} />
-          <span className="text-[20px] font-semibold">Forma płatności</span>
+          <span ref={myRef} className="text-[20px] font-semibold">
+            Forma płatności
+          </span>
         </div>
         <div>
           <img src={open ? arrowUpIcon : arrowDownIcon} />
