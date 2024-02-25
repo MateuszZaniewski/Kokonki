@@ -11,7 +11,7 @@ export default function ProductOverview() {
   if (product) {
     return (
       <div className="flex-col">
-        <div className="relative flex flex-col gap-24 pt-28 xl:flex-row xl:px-14">
+        <div className="relative flex flex-col gap-12 pt-28 lg:gap-24 xl:flex-row xl:px-14">
           <ProductImages />
           <ProductVariants />
         </div>

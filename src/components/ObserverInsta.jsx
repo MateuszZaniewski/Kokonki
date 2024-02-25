@@ -51,14 +51,16 @@ export default function ObserverInsta() {
 
       <div className="mx-auto my-10 h-72 w-auto px-4 text-center text-white md:w-[550px] lg:w-[700px] xl:hidden">
         <div className="h-full w-full">
-          <div className="flex h-full w-full flex-col items-center justify-center rounded-md bg-[url('./assets/sweater.svg')] bg-cover bg-center bg-no-repeat">
-            <h2 className="text-[25px]">Obserwuj nas na Instagramie</h2>
-            <Link
-              to={"https://www.instagram.com/kokonki.motki/"}
-              className="xl:text-[49px]"
-            >
-              @kokonki.pl
-            </Link>
+          <div className="flex h-full w-full flex-col items-center justify-center rounded-md bg-[url('./assets/sweater.svg')] bg-cover bg-center bg-no-repeat ">
+            <div className="w-full border border-[#F7C592] bg-[#F7C592] bg-opacity-75">
+              <h2 className=" text-[25px]">Obserwuj nas na Instagramie</h2>
+              <Link
+                to={"https://www.instagram.com/kokonki.motki/"}
+                className="text-[20px] xl:text-[49px]"
+              >
+                @kokonki.pl
+              </Link>
+            </div>
           </div>
         </div>
       </div>

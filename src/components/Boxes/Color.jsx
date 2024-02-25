@@ -10,7 +10,7 @@ export default function Color({ color }) {
     return (
       <div
         style={containerStyle}
-        className=" cursor-pointer hover:scale-110 hover:border-2 hover:border-black"
+        className={`cursor-pointer hover:scale-110 hover:border-2 hover:border-black hover:shadow-[inset_0px_0px_0px_4px_#821232,0px_0px_0px_4px_#2a4746]`}
       ></div>
     );
   }

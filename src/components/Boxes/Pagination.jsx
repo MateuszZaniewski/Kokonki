@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ReactPaginate from "react-paginate";
 import Opinion from "./Opinion";
 
 export default function Pagination({ opinions }) {
   const items = [...Array(opinions.length).keys()];
+  const refList = useRef(null);
 
   function Items({ currentItems, opinions }) {
     return (
-      <div className="items">
+      <div className="items" ref={refList}>
         {currentItems &&
           currentItems.map((item) =>
             opinions.map((opinion, index) => {
@@ -37,17 +38,17 @@ export default function Pagination({ opinions }) {
 
     const handlePageClick = (event) => {
       const newOffset = (event.selected * itemsPerPage) % items.length;
-      console.log(
-        `User requested page number ${event.selected}, which is offset ${newOffset}`,
-      );
       setItemOffset(newOffset);
+      refList.current.scrollIntoView({
+        behavior: "smooth",
+      });
     };
 
     return (
       <>
         <Items currentItems={currentItems} opinions={opinions} />
         <ReactPaginate
-          className="mx-auto flex items-center justify-center gap-5 py-4 md:w-[450px] lg:w-[600px] xl:py-14"
+          className="mx-auto flex items-center justify-center gap-3 py-4 md:w-[450px] lg:w-[600px] lg:gap-5 xl:py-14"
           nextLabel=">"
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}

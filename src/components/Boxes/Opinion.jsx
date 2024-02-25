@@ -7,10 +7,8 @@ export default function Opinion({ value }) {
       <div className="hidden border-b-2 border-black xl:flex xl:px-10 xl:py-14 ">
         <div className="flex">
           <div className="w-1/4">
-            {value.image.length > 0 ? (
-              <img className="xl:h-[160px] xl:w-[160px]" src={value.image} />
-            ) : (
-              <div className="xl:h-[160px] xl:w-[160px]"></div>
+            {value.image && (
+              <img className="h-[160px] w-[160px]" src={value.image} />
             )}
           </div>
           <div className="w-3/4 pl-7">
@@ -38,10 +36,8 @@ export default function Opinion({ value }) {
       <div className="mx-auto flex border-b-2 border-black px-4 py-8 md:w-[450px] lg:w-[600px] xl:hidden">
         <div className="flex flex-col flex-wrap xl:hidden">
           <div className="">
-            {value.image.length > 0 ? (
+            {value.image && (
               <img className="h-[150px] w-[150px]" src={value.image} />
-            ) : (
-              <div className="h-[160px] w-[160px]"></div>
             )}
           </div>
           <div className="">
