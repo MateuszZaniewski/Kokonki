@@ -47,10 +47,10 @@ export default function AddedToCardModal() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center gap-5 md:pt-5 xl:gap-4 xl:pt-[30px]">
+            <div className="flex flex-col items-center gap-5 md:flex-row md:justify-center md:pt-5 xl:gap-4 xl:pt-[30px]">
               <button
                 onClick={() => setShowAddedToCardModal(false)}
-                className={`rounded-full border-2 border-[#2A4746] hover:opacity-90 xl:max-w-[194px] xl:px-[15px] xl:py-[10px]`}
+                className={`rounded-full border-2 border-[#2A4746] px-2 py-2 hover:opacity-90 xl:max-w-[194px] xl:px-[15px] xl:py-[10px]`}
               >
                 Kontynuuj zakupy
               </button>
@@ -58,7 +58,7 @@ export default function AddedToCardModal() {
               <Link to="/checkout">
                 <button
                   onClick={() => setShowAddedToCardModal(false)}
-                  className={`rounded-full border-2 border-[#2A4746] bg-[#2A4746] text-white hover:opacity-90 xl:max-w-[194px] xl:px-[15px] xl:py-[10px]`}
+                  className={`rounded-full border-2 border-[#2A4746] bg-[#2A4746] px-2 py-2 text-white hover:opacity-90 xl:max-w-[194px] xl:px-[15px] xl:py-[10px]`}
                 >
                   Przejdź do koszyka
                 </button>
