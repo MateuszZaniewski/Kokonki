@@ -23,11 +23,11 @@ export default function CartStep1({
 
   const handleOpen = () => {
     setOpen(!open);
-    if (!open) {
-      myRef.current.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
+    // if (!open) {
+    //   myRef.current.scrollIntoView({
+    //     behavior: "smooth",
+    //   });
+    // }
   };
 
   const handleChange = (e) => {

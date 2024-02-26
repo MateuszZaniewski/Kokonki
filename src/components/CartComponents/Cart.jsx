@@ -4,7 +4,7 @@ import Summary from "./Summary";
 import SummaryWithOrder from "./SummaryWithOrder";
 import CartStep from "./CartStep";
 import backIcon from "../../assets/back.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Cart() {
   const [firstForm, setFirstForm] = useState({
@@ -21,7 +21,7 @@ export default function Cart() {
   });
   const [secondForm, setSecondForm] = useState({
     courier: "",
-    price: "",
+    price: 0,
   });
   const [thirdForm, setThirdForm] = useState({
     payForm: "",
@@ -47,10 +47,6 @@ export default function Cart() {
   const step = useCartStore((state) => state.step);
   const prevStep = useCartStore((state) => state.prevStep);
   const resetStep = useCartStore((state) => state.resetStep);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" }), [];
-  });
 
   if (cart && cart.length > 0) {
     return (

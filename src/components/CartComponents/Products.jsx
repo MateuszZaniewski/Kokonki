@@ -49,9 +49,18 @@ export default function Products() {
                     <img src={cartItem.image} className="h-full w-full" />
                   </div>
                   <div className="flex w-full flex-col pl-2 lg:pl-0">
-                    <span className="pt-3 font-semibold lg:pt-0 xl:pb-1 xl:text-[20px]">
-                      {cartItem.name}
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="pt-3 font-semibold lg:pt-0 xl:pb-1 xl:text-[20px]">
+                        {cartItem.name}
+                      </span>
+                      <span
+                        className="text-[14px] font-semibold underline"
+                        onClick={() => deleteItemFromCart(cartItem.name)}
+                      >
+                        USUŃ
+                      </span>
+                    </div>
+
                     <span className="pb-4">średni brąz (mix 0612)</span>
                     <span className="xl:pb-5 xl:text-[16px]">
                       {(cartItem.price * cartItem.quantity)
@@ -65,28 +74,13 @@ export default function Products() {
                         name={cartItem.name}
                       />
                     </div>
-                    <div className="flex justify-end pt-8 lg:hidden">
-                      <span
-                        className="text-[14px] font-semibold underline"
-                        onClick={() => deleteItemFromCart(cartItem.name)}
-                      >
-                        USUŃ
-                      </span>
-                    </div>
-                  </div>
-                  <div className="hidden items-start lg:flex">
-                    <span
-                      className="text-[14px] font-semibold underline"
-                      onClick={() => deleteItemFromCart(cartItem.name)}
-                    >
-                      USUŃ
-                    </span>
+                    <div className="flex justify-end pt-8 lg:hidden"></div>
                   </div>
                 </li>
               );
             })}
             <div className="flex gap-3 pt-5 lg:pt-0">
-              <img src={alertIcon} />
+              <img className=" self-start" src={alertIcon} />
               <span>
                 Pamiętaj, koszyk to nie rezerwacja. Produkty, mogą zostać
                 wyprzedane.

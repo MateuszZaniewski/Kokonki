@@ -37,6 +37,17 @@ export default function SummaryWithOrder({
     }
   };
 
+  const fullPrice = () => {
+    if (secondForm.price.length > 1) {
+      let dostawa = Number(secondForm.price.split(",").join("."));
+      let cost = totalCost();
+      return (dostawa + cost).toFixed(2).split(".").join(",");
+    } else {
+      let cost = totalCost();
+      return cost.toFixed(2).split(".").join(",");
+    }
+  };
+
   const Error = ({ first, second, third }) => {
     if (Object.values(first).some((error) => error) || second || third) {
       return (
@@ -81,11 +92,11 @@ export default function SummaryWithOrder({
         </div>
         <div className="flex justify-between pb-3">
           <span>Dostawa</span>
-          <span>od 0 zł</span>
+          <span>{secondForm.price} zł</span>
         </div>
         <div className="flex justify-between font-semibold xl:text-[20px]">
           <span>Łączna kwota</span>
-          <span>{totalCost().toFixed(2).split(".").join(",")} zł</span>
+          <span>{fullPrice()} zł</span>
         </div>
         <span>z VAT</span>
         <div className="mx-auto pb-14 pt-9 xl:w-[80%]">

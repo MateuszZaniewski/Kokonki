@@ -59,13 +59,13 @@ export default function Summary() {
           </button>
         </div>
         <div className="flex gap-3 pb-3">
-          <img src={alertIcon} />
+          <img className=" self-start" src={alertIcon} />
           <span>
             Odbiór osobisty w punkcie odbioru w Białystoku zawsze za darmo.
           </span>
         </div>
         <div className="flex gap-3 pb-20 lg:pb-0">
-          <img src={truckIcon} />
+          <img className=" self-start" src={truckIcon} />
           <span>Darmowa dostawa dla zamówień powyżej 200 zł.</span>
         </div>
       </div>

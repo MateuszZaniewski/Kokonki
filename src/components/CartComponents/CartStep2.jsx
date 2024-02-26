@@ -14,6 +14,7 @@ export default function CartStep2({
 
   const handleOpen = () => {
     setOpen(!open);
+    console.log(open);
     if (!open) {
       myRef.current.scrollIntoView({
         behavior: "smooth",
