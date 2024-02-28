@@ -11,13 +11,16 @@ import CtaButton from "./Boxes/CtaButton";
 import { useState } from "react";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
-import { useCartStore } from "../store/store";
+import { useCartStore, useVisibilityStore } from "../store/store";
+import DemoPopup from "./Boxes/DemoPopup";
 
 export default function ProductVariants() {
   const { product, quantity, cart, setCart, setShowAddedToCardModal } =
     useContext(AppContext);
   const [favourite, setFavourite] = useState(false);
   const addItemToCart = useCartStore((state) => state.addToCart);
+  const showDemo = useVisibilityStore((state) => state.showDemo);
+  const toggleShowDemo = useVisibilityStore((state) => state.toggleShowDemo);
 
   const addToCart = (product, quantity, price, image) => {
     addItemToCart(product.name, quantity, price, image);
@@ -44,7 +47,11 @@ export default function ProductVariants() {
           <div className="flex justify-between">
             <div className="xl:text-[39px]">{product[0].name}</div>
             <div className="flex xl:gap-4">
-              <img src={shareIcon} className="cursor-pointer hover:scale-110" />
+              <img
+                src={shareIcon}
+                onClick={() => toggleShowDemo()}
+                className="cursor-pointer hover:scale-110"
+              />
               <img
                 src={favourite ? redHeartFillIcon : redHeartEmptyIcon}
                 onClick={() => setFavourite(!favourite)}
@@ -86,10 +93,11 @@ export default function ProductVariants() {
           <Promotion text="Promocja" visible={true} />
           <div className="pt-4">{product[0].category}</div>
           <div className="flex flex-col gap-5">
-            <div className="flex gap-4">
+            <div className="flex justify-between gap-4">
               <div className="text-[28px]">{product[0].name}</div>
               <div className="flex gap-4">
                 <img
+                  onClick={() => toggleShowDemo()}
                   src={shareIcon}
                   className="cursor-pointer hover:scale-110"
                 />

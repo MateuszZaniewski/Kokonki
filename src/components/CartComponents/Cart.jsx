@@ -5,6 +5,7 @@ import SummaryWithOrder from "./SummaryWithOrder";
 import CartStep from "./CartStep";
 import backIcon from "../../assets/back.svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const [firstForm, setFirstForm] = useState({
@@ -54,7 +55,9 @@ export default function Cart() {
         <div className="mx-auto flex gap-2 px-5 lg:px-10 lg:pt-10 xl:max-w-[1320px] xl:px-16">
           <img src={backIcon} />
           {step === 0 ? (
-            <span onClick={() => resetStep()}>Wróć</span>
+            <Link to={"/product/Drops%20Nepal"}>
+              <span>Wróć</span>
+            </Link>
           ) : step === 1 ? (
             <span onClick={() => prevStep(0)}>Koszyk</span>
           ) : (

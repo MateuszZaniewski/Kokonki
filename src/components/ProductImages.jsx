@@ -59,8 +59,13 @@ export default function ProductImages() {
     );
   } else {
     return (
-      <div className="text-center">
-        <h1>We are sorry, but {name} can not be found ;( </h1>
+      <div className="flex w-full justify-center">
+        <div className="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       </div>
     );
   }

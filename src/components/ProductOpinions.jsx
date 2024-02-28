@@ -2,8 +2,10 @@ import Pagination from "./Boxes/Pagination";
 import Star from "./Boxes/Star";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
+import { useVisibilityStore } from "../store/store";
 export default function ProductOpinions() {
   const { product } = useContext(AppContext);
+  const toggleShowDemo = useVisibilityStore((state) => state.toggleShowDemo);
   if (product && product.length > 0) {
     const rating = product[0].opinions.map((opinion) => {
       let summary = 0;
@@ -28,7 +30,7 @@ export default function ProductOpinions() {
                 ({product[0].opinions.length})
               </span>
             </div>
-            <div>
+            <div onClick={() => toggleShowDemo()}>
               <button
                 className={`w-fit rounded-full border-2 border-[#2A4746] px-7 py-2 hover:bg-[#2A4746] hover:text-white`}
               >

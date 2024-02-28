@@ -15,7 +15,8 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from "body-scroll-lock";
-import { useCartStore } from "../store/store";
+import DemoPopup from "./Boxes/DemoPopup";
+import { useVisibilityStore, useCartStore } from "../store/store";
 export default function Navbar() {
   const {
     visibleQuickCart,
@@ -25,6 +26,13 @@ export default function Navbar() {
   } = useContext(AppContext);
   const cart = useCartStore((state) => state.cart);
   const root = document.querySelector("#root");
+  const showDemo = useVisibilityStore((state) => state.showDemo);
+  const toggleShowDemo = useVisibilityStore((state) => state.toggleShowDemo);
+  const resetStep = useCartStore((state) => state.resetStep);
+
+  const redirectToCart = () => {
+    resetStep();
+  };
 
   useEffect(() => {
     if (visibleHamburgerMenu) {
@@ -43,7 +51,7 @@ export default function Navbar() {
     setVisibleHamburgerMenu(false);
   };
   const categoryLinks = ["Nowości", "Włóczki", "Akcesoria", "Promocje", "Blog"];
-  const interLinks = ["Moje konto", "Ulubione", "Koszyk"];
+  const interLinks = ["Moje konto", "Ulubione"];
 
   return (
     <nav>
@@ -86,6 +94,21 @@ export default function Navbar() {
               {categoryLinks.map((e) => {
                 return (
                   <div
+                    onClick={() => toggleShowDemo()}
+                    key={e}
+                    className="flex justify-between border-b pb-1 pl-5 pr-2"
+                  >
+                    <Link className="hover:text-[#F6C48F]">{e}</Link>
+                    <img src={rightArrowIcon} className="h-5 w-5" />
+                  </div>
+                );
+              })}
+            </ul>
+            <ul className="flex flex-col gap-5 pt-5">
+              {interLinks.map((e) => {
+                return (
+                  <div
+                    onClick={() => toggleShowDemo()}
                     key={e}
                     className="flex justify-between border-b pb-1 pl-5 pr-2"
                   >
@@ -96,19 +119,16 @@ export default function Navbar() {
               })}
             </ul>
             <ul className="flex flex-col gap-5 py-5">
-              {interLinks.map((e) => {
-                return (
-                  <div
-                    key={e}
-                    className="flex justify-between border-b pb-1 pl-5 pr-2"
-                  >
-                    <Link to="/checkout" className="hover:text-[#F6C48F]">
-                      {e}
-                    </Link>
-                    <img src={rightArrowIcon} className="h-5 w-5" />
-                  </div>
-                );
-              })}
+              <div className="flex justify-between border-b pb-1 pl-5 pr-2">
+                <Link
+                  onClick={() => redirectToCart()}
+                  to="/checkout"
+                  className="hover:text-[#F6C48F]"
+                >
+                  Koszyk
+                </Link>
+                <img src={rightArrowIcon} className="h-5 w-5" />
+              </div>
             </ul>
           </div>
         </div>
@@ -124,20 +144,20 @@ export default function Navbar() {
         </div>
         {/* Logo section */}
         <div className="flex w-full justify-center">
-          <Link to="/">
+          <Link to="/product/Drops Nepal">
             <img src={logo} className="w-48 lg:h-auto lg:w-[20rem]" />
           </Link>
         </div>
         <div className="hidden md:flex">
           {/* User, Fav, Cart section */}
           <div className="flex w-auto gap-9 pr-10 xl:pr-14">
-            <div className="md:w-[40px]">
+            <div onClick={() => toggleShowDemo()} className="md:w-[40px]">
               <img
                 src={userIcon}
                 className="h-[24px] w-[24px] cursor-pointer hover:scale-110"
               />
             </div>
-            <div className="md:w-[40px]">
+            <div onClick={() => toggleShowDemo()} className="md:w-[40px]">
               <img
                 src={heartFillIcon}
                 className="h-[24px] w-[24px] cursor-pointer hover:scale-110"
@@ -164,6 +184,7 @@ export default function Navbar() {
           <QuickCart />
         </div>
       </div>
+      {showDemo && <DemoPopup />}
     </nav>
   );
 }

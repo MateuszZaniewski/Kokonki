@@ -11,11 +11,11 @@ export default function Details({ visiblePage, setVisiblePage, product }) {
     });
   };
   return (
-    <div
-      onClick={handleClick}
-      className="border-b-2 border-black py-4 xl:w-[538px]"
-    >
-      <div className="flex cursor-pointer justify-between">
+    <div className="border-b-2 border-black py-4 xl:w-[538px]">
+      <div
+        onClick={handleClick}
+        className="flex cursor-pointer justify-between"
+      >
         <span ref={myRef} className="font-bold uppercase xl:text-[13px]">
           Szczególy
         </span>

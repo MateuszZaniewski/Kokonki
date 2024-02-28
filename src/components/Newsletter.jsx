@@ -1,7 +1,12 @@
 import circleRed from "../assets/circleRed.svg";
 import circleBrown from "../assets/circleBrown.svg";
 import CtaButton from "./Boxes/CtaButton";
+import { useVisibilityStore } from "../store/store";
 export default function Newsletter() {
+  const toggleShowDemo = useVisibilityStore((state) => state.toggleShowDemo);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="mx-auto flex flex-col py-16 text-[#222220] md:w-[450px] lg:w-[600px] xl:mx-0 xl:w-auto xl:flex-row xl:pb-24 xl:pt-0">
       <div className="flex justify-start pb-4 pl-4 xl:w-1/4 xl:justify-center xl:pb-0 xl:pl-0 xl:pt-4">
@@ -22,12 +27,12 @@ export default function Newsletter() {
           placeholder="Wpisz swój adres mailowy"
           type="email"
         ></input>
-        <form className="px-2 pt-8 xl:px-0">
+        <form onSubmit={handleSubmit} className="px-2 pt-8 xl:px-0">
           <input type="radio"></input>
           <span className="pl-1">
             Przeczytałem i rozumiałem Regulamin i Politykę prywatności
           </span>
-          <div className="pt-6 xl:pt-16">
+          <div onClick={() => toggleShowDemo()} className="pt-6 xl:pt-16">
             <CtaButton text="Subskrybuj" background="bg-transparent" />
           </div>
         </form>

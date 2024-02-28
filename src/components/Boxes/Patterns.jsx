@@ -10,8 +10,12 @@ export default function Patterns({ visiblePage, setVisiblePage, product }) {
     });
   };
   return (
-    <div onClick={handleClick} className="py-4 xl:w-[538px]">
-      <div ref={myRef} className="flex cursor-pointer justify-between">
+    <div className="py-4 xl:w-[538px]">
+      <div
+        onClick={handleClick}
+        ref={myRef}
+        className="flex cursor-pointer justify-between"
+      >
         <span className="font-bold uppercase xl:text-[13px]">
           Wzory dla włóczki
         </span>

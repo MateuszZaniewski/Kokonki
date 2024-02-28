@@ -3,8 +3,10 @@ import redHeartEmptyIcon from "../assets/redHeart-empty.svg";
 import Promotion from "./Boxes/Promotion";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
+import { useVisibilityStore } from "../store/store";
 export default function ProductRelated() {
   const { product } = useContext(AppContext);
+  const toggleShowDemo = useVisibilityStore((state) => state.toggleShowDemo);
   if (product && product.length > 0) {
     return (
       <>
@@ -34,6 +36,7 @@ export default function ProductRelated() {
                     <div className="flex flex-wrap items-center justify-between gap-4 pb-1 pt-6 xl:gap-0">
                       <h4 className="w-fit">{item.tittle}</h4>
                       <img
+                        onClick={() => toggleShowDemo()}
                         src={redHeartEmptyIcon}
                         className="h-[16px] w-[16px]"
                       />
@@ -73,6 +76,7 @@ export default function ProductRelated() {
                     <div className="flex items-center justify-between">
                       <h4 className="w-fit">{item.tittle}</h4>
                       <img
+                        onClick={() => toggleShowDemo()}
                         src={redHeartEmptyIcon}
                         className="h-[16px] w-[16px]"
                       />

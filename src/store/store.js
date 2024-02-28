@@ -78,14 +78,15 @@ export const useCartStore = create(
   ),
 );
 
-// export const useProductStore = create((set) => ({
-//   productName: "",
-//   changeProductName: (name) =>
-//     set((state) => ({ productName: (state.productName = name) })),
-// }));
-
 export const useVisibilityStore = create((set) => ({
   visiblePage: 1,
+  showDemo: false,
   changeVisiblePage: (newValue) =>
     set((state) => ({ visiblePage: (state.visiblePage = newValue) })),
+  toggleShowDemo: () => {
+    set((state) => ({ showDemo: true }));
+    setTimeout(() => {
+      set((state) => ({ showDemo: false }));
+    }, 1000);
+  },
 }));

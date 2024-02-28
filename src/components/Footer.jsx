@@ -2,11 +2,13 @@ import logo from "../assets/logo.svg";
 import downArrowIcon from "../assets/arrow-down.svg";
 import upArrowIcon from "../assets/arrow-up.svg";
 import { useState } from "react";
+import { useVisibilityStore } from "../store/store";
 export default function Footer() {
   const [openShopLinks, setOpenShopLinks] = useState(true);
   const [openHelpLinks, setOpenHelpLinks] = useState(false);
   const [openAccountLinks, setOpenAccountLinks] = useState(false);
   const [openInfoLinks, setOpenInfoLinks] = useState(false);
+  const toggleShowDemo = useVisibilityStore((state) => state.toggleShowDemo);
   const listClass =
     "xl:pb-[10px] lg:pb-[8px] md:pb-[6px] pb-[5px] cursor-pointer hover:text-[#F6C48F]";
 
@@ -64,7 +66,11 @@ export default function Footer() {
             </div>
             {openShopLinks &&
               shopLinks.map((link) => (
-                <li className={listClass} key={link}>
+                <li
+                  onClick={() => toggleShowDemo()}
+                  className={listClass}
+                  key={link}
+                >
                   {link}
                 </li>
               ))}
@@ -79,7 +85,11 @@ export default function Footer() {
             </div>
             {openHelpLinks &&
               helpLinks.map((link) => (
-                <li className={listClass} key={link}>
+                <li
+                  onClick={() => toggleShowDemo()}
+                  className={listClass}
+                  key={link}
+                >
                   {link}
                 </li>
               ))}
@@ -94,7 +104,11 @@ export default function Footer() {
             </div>
             {openAccountLinks &&
               accountLinks.map((link) => (
-                <li className={listClass} key={link}>
+                <li
+                  onClick={() => toggleShowDemo()}
+                  className={listClass}
+                  key={link}
+                >
                   {link}
                 </li>
               ))}
@@ -109,7 +123,11 @@ export default function Footer() {
             </div>
             {openInfoLinks &&
               infoLinks.map((link) => (
-                <li className={listClass} key={link}>
+                <li
+                  onClick={() => toggleShowDemo()}
+                  className={listClass}
+                  key={link}
+                >
                   {link}
                 </li>
               ))}
@@ -129,7 +147,11 @@ export default function Footer() {
               <span>ZAKUPY</span>
             </div>
             {shopLinks.map((link) => (
-              <li className={listClass} key={link}>
+              <li
+                onClick={() => toggleShowDemo()}
+                className={listClass}
+                key={link}
+              >
                 {link}
               </li>
             ))}
@@ -139,7 +161,11 @@ export default function Footer() {
               <span>POMOC</span>
             </div>
             {helpLinks.map((link) => (
-              <li className={listClass} key={link}>
+              <li
+                onClick={() => toggleShowDemo()}
+                className={listClass}
+                key={link}
+              >
                 {link}
               </li>
             ))}
@@ -149,7 +175,11 @@ export default function Footer() {
               <span>MOJE KONTO</span>
             </div>
             {accountLinks.map((link) => (
-              <li className={listClass} key={link}>
+              <li
+                onClick={() => toggleShowDemo()}
+                className={listClass}
+                key={link}
+              >
                 {link}
               </li>
             ))}
@@ -159,7 +189,11 @@ export default function Footer() {
               <span>INFORMACJE</span>
             </div>
             {infoLinks.map((link) => (
-              <li className={listClass} key={link}>
+              <li
+                onClick={() => toggleShowDemo()}
+                className={listClass}
+                key={link}
+              >
                 {link}
               </li>
             ))}

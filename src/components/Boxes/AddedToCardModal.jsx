@@ -2,9 +2,15 @@ import closeIcon from "../../assets/close.svg";
 import { AppContext } from "../../context/AppContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { useCartStore } from "../../store/store";
 
 export default function AddedToCardModal() {
   const { product, quantity, setShowAddedToCardModal } = useContext(AppContext);
+  const resetStep = useCartStore((state) => state.resetStep);
+  const redirectToCart = () => {
+    resetStep();
+    setShowAddedToCardModal(false);
+  };
 
   if (product && product.length > 0) {
     return (
@@ -57,7 +63,7 @@ export default function AddedToCardModal() {
 
               <Link to="/checkout">
                 <button
-                  onClick={() => setShowAddedToCardModal(false)}
+                  onClick={() => redirectToCart()}
                   className={`rounded-full border-2 border-[#2A4746] bg-[#2A4746] px-2 py-2 text-white hover:opacity-90 xl:max-w-[194px] xl:px-[15px] xl:py-[10px]`}
                 >
                   Przejdź do koszyka

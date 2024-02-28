@@ -10,6 +10,7 @@ import ProductOverview from "../components/ProductOverview";
 import { AppContext } from "./../context/AppContext";
 import AddedToCardModal from "../components/Boxes/AddedToCardModal";
 import { useRef } from "react";
+import DemoPopup from "../components/Boxes/DemoPopup";
 
 export default function ProductPage() {
   const { name } = useParams();
@@ -67,7 +68,17 @@ export default function ProductPage() {
         className="mx-auto max-w-[1440px] bg-[#F9F8F9] font-inter xl:min-h-[100vh]"
       >
         {showAddedToCardModal ? <AddedToCardModal /> : null}
-
+        {!product && (
+          <div className="flex h-[100vh] w-full items-center justify-center">
+            <div className="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <span>Ładowanie produktu, proszę czekać...</span>
+          </div>
+        )}
         <Navbar />
         <Links />
         <ProductOverview />
